@@ -18,9 +18,10 @@
       repo: 'https://github.com/sera-ai/',
       loadSidebar: true,
       alias: {
-        '/beta/(.*)': '/beta/$1',
-        // Add more versions as needed
+        '/.*/_sidebar.md': '/_sidebar.md',
+        '/beta/(.*)': '/beta/$1'
       },
+      homepage: 'beta/README.md',
       navbar: [
         '<select id="version-selector" onchange="location = this.value;">',
         '<option value="/#/beta/">Latest</option>',
