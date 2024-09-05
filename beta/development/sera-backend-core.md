@@ -10,7 +10,7 @@
 <dt><a href="#EventRoutes">EventRoutes(fastify, options)</a> ⇒ <code>Array.&lt;Object&gt;</code> | <code>string</code> | <code>Array.&lt;Object&gt;</code></dt>
 <dd><p>Retrieves a list of available event playbooks, each with its name, type, and enabled status.</p>
 </dd>
-<dt><a href="#HostRoutes">HostRoutes(fastify, options)</a> ⇒ <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code> | <code>Object</code></dt>
+<dt><a href="#HostRoutes1">HostRoutes1(fastify, options)</a> ⇒ <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code> | <code>Object</code></dt>
 <dd><p>Retrieves the DNS configuration for a given host.</p>
 </dd>
 <dt><a href="#IntegrationRoutes">IntegrationRoutes(fastify, options)</a> ⇒ <code>Object</code> | <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Array.&lt;Object&gt;</code></dt>
@@ -160,9 +160,9 @@ Retrieves a list of available event playbooks, each with its name, type, and ena
 | request.body.event_name | <code>string</code> | The name of the event. |
 | request.body.data | <code>Object</code> | The data associated with the event. |
 
-<a name="HostRoutes"></a>
+<a name="HostRoutes1"></a>
 
-## HostRoutes(fastify, options) ⇒ <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code> \| <code>Object</code>
+## HostRoutes1(fastify, options) ⇒ <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code> \| <code>Object</code>
 Retrieves the DNS configuration for a given host.
 
 **Kind**: global function  
