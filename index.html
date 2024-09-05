@@ -22,13 +22,14 @@
         '/beta/(.*)': '/beta/$1'
       },
       homepage: 'beta/README.md',
-      navbar: [
-        '<select id="version-selector" onchange="location = this.value;">',
-        '<option value="/#/beta/">Latest</option>',
-        '<option value="/#/beta/">BETA</option>',
-        // Add more versions here
-        '</select>'
-      ].join(''),
+      navbar: `
+        <nav>
+          <select id="version-selector" onchange="location = this.value;">
+            <option value="/#/beta/">Beta</option>
+            <option value="/#/v1/">v1</option>
+          </select>
+        </nav>
+      `
     };
   </script>
   <!-- Docsify v4 -->
