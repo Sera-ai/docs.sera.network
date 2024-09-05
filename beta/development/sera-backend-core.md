@@ -1,26 +1,26 @@
 ## Functions
 
 <dl>
-<dt><a href="#routes">routes(fastify, options)</a> ⇒ <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code></dt>
+<dt><a href="#AnalyticRoutes">AnalyticRoutes(fastify, options)</a> ⇒ <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code></dt>
 <dd><p>Retrieves detailed host data, filtering by hosts, paths, methods, and time periods.</p>
 </dd>
-<dt><a href="#routes">routes(fastify, options)</a> ⇒ <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>string</code> | <code>Object</code> | <code>Object</code> | <code>string</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>Array.&lt;Object&gt;</code></dt>
+<dt><a href="#BuilderRoutes">BuilderRoutes(fastify, options)</a> ⇒ <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>string</code> | <code>Object</code> | <code>Object</code> | <code>string</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>Array.&lt;Object&gt;</code></dt>
 <dd><p>Retrieves event structure data based on the provided event and type.</p>
 </dd>
-<dt><a href="#routes">routes(fastify, options)</a> ⇒ <code>Array.&lt;Object&gt;</code> | <code>string</code> | <code>Array.&lt;Object&gt;</code></dt>
+<dt><a href="#EventRoutes">EventRoutes(fastify, options)</a> ⇒ <code>Array.&lt;Object&gt;</code> | <code>string</code> | <code>Array.&lt;Object&gt;</code></dt>
 <dd><p>Retrieves a list of available event playbooks, each with its name, type, and enabled status.</p>
 </dd>
-<dt><a href="#routes">routes(fastify, options)</a> ⇒ <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code> | <code>Object</code></dt>
+<dt><a href="#HostRoutes">HostRoutes(fastify, options)</a> ⇒ <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code> | <code>Object</code></dt>
 <dd><p>Retrieves the DNS configuration for a given host.</p>
 </dd>
-<dt><a href="#routes">routes(fastify, options)</a> ⇒ <code>Object</code> | <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Array.&lt;Object&gt;</code></dt>
+<dt><a href="#IntegrationRoutes">IntegrationRoutes(fastify, options)</a> ⇒ <code>Object</code> | <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Array.&lt;Object&gt;</code></dt>
 <dd><p>Retrieves all the nodes (plugins) associated with builder integrations.</p>
 </dd>
 </dl>
 
-<a name="routes"></a>
+<a name="AnalyticRoutes"></a>
 
-## routes(fastify, options) ⇒ <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code>
+## AnalyticRoutes(fastify, options) ⇒ <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code>
 Retrieves detailed host data, filtering by hosts, paths, methods, and time periods.
 
 **Kind**: global function  
@@ -60,9 +60,9 @@ Retrieves detailed host data, filtering by hosts, paths, methods, and time perio
 | [request.query.path] | <code>string</code> | The path to filter host data. |
 | [request.query.method] | <code>string</code> | The HTTP method to filter host data. |
 
-<a name="routes"></a>
+<a name="BuilderRoutes"></a>
 
-## routes(fastify, options) ⇒ <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code> \| <code>Object</code> \| <code>Object</code> \| <code>string</code> \| <code>Object</code> \| <code>Object</code> \| <code>string</code> \| <code>Object</code> \| <code>Object</code> \| <code>Object</code> \| <code>Array.&lt;Object&gt;</code>
+## BuilderRoutes(fastify, options) ⇒ <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code> \| <code>Object</code> \| <code>Object</code> \| <code>string</code> \| <code>Object</code> \| <code>Object</code> \| <code>string</code> \| <code>Object</code> \| <code>Object</code> \| <code>Object</code> \| <code>Array.&lt;Object&gt;</code>
 Retrieves event structure data based on the provided event and type.
 
 **Kind**: global function  
@@ -133,9 +133,9 @@ Retrieves event structure data based on the provided event and type.
 | request.query.event | <code>string</code> | The event to filter the structure. |
 | [request.query.type] | <code>string</code> | The type of event structure to retrieve. |
 
-<a name="routes"></a>
+<a name="EventRoutes"></a>
 
-## routes(fastify, options) ⇒ <code>Array.&lt;Object&gt;</code> \| <code>string</code> \| <code>Array.&lt;Object&gt;</code>
+## EventRoutes(fastify, options) ⇒ <code>Array.&lt;Object&gt;</code> \| <code>string</code> \| <code>Array.&lt;Object&gt;</code>
 Retrieves a list of available event playbooks, each with its name, type, and enabled status.
 
 **Kind**: global function  
@@ -160,9 +160,9 @@ Retrieves a list of available event playbooks, each with its name, type, and ena
 | request.body.event_name | <code>string</code> | The name of the event. |
 | request.body.data | <code>Object</code> | The data associated with the event. |
 
-<a name="routes"></a>
+<a name="HostRoutes"></a>
 
-## routes(fastify, options) ⇒ <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code> \| <code>Object</code>
+## HostRoutes(fastify, options) ⇒ <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code> \| <code>Object</code>
 Retrieves the DNS configuration for a given host.
 
 **Kind**: global function  
@@ -200,9 +200,9 @@ Retrieves the DNS configuration for a given host.
 | request.query | <code>Object</code> |  | The query parameters for retrieving DNS data. |
 | request.query.host | <code>string</code> |  | The hostname of the host to retrieve the DNS configuration for. |
 
-<a name="routes"></a>
+<a name="IntegrationRoutes"></a>
 
-## routes(fastify, options) ⇒ <code>Object</code> \| <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Array.&lt;Object&gt;</code>
+## IntegrationRoutes(fastify, options) ⇒ <code>Object</code> \| <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Array.&lt;Object&gt;</code>
 Retrieves all the nodes (plugins) associated with builder integrations.
 
 **Kind**: global function  
