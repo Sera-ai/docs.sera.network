@@ -1,4 +1,8 @@
-![Sera Logo](logo.png) Sera Documentation
+<!-- Sidebar Title with Logo and Text Side-by-Side -->
+<div style="display: flex; align-items: center;">
+  <img src="logo.png" alt="Sera Logo" style="height: 30px; margin-right: 10px;">
+  <span>Sera</span>
+</div>
 
 * [Home](/beta/)
 * [API Documentation](api.md)
