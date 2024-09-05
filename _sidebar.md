@@ -5,8 +5,8 @@
 </div>
 
 * [Home](/beta/)
-* [Development](/development/)
-  * [Sera Backend Core](/development/sera-backend-core.md)
+* [Development](/beta/development/)
+  * [Sera Backend Core](/beta/development/sera-backend-core.md)
   * [User Management API](/api/user-management.md)
   * [Data API](/api/data.md)
 * [Installation Guide](/installation.md)
