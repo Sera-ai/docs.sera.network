@@ -1,7 +1,7 @@
 <!-- Sidebar Title with Logo and Text Side-by-Side -->
 <div style="display: flex; align-items: center;">
-  <img src="logo.png" alt="Sera Logo" style="height: 30px; margin-right: 10px;">
-  <span>Sera</span>
+  <img src="logo.png" alt="Sera Logo" style="height: 30px; margin-right: 5px; margin-left: 15px">
+  <h1>Sera</h1>
 </div>
 
 * [Home](/beta/)
