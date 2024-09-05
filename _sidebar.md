@@ -1,3 +1,5 @@
+![Sera Logo](logo.png) Sera Documentation
+
 * [Home](/beta/)
 * [API Documentation](api.md)
 * [Installation Guide](installation.md)
