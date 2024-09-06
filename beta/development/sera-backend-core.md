@@ -1,7 +1,7 @@
 ## Functions
 
 <dl>
-<dt><a href="#AnalyticRoutes">AnalyticRoutes(fastify, options)</a> ⇒ <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code></dt>
+<dt><a href="#routes">routes()</a></dt>
 <dd><p>Registers routes for managing analytics, logs, usage, and host data with the Fastify server.</p>
 <p>This function sets up several endpoints to retrieve analytics, logs, usage statistics, and host data, with options to filter based on time periods, hosts, paths, and methods.
 The available routes are:</p>
@@ -12,6 +12,14 @@ The available routes are:</p>
 <li><strong>GET</strong> <code>/manage/hostdata</code>: Retrieves host-related data, filtered by hosts, paths, and methods.</li>
 </ul>
 </dd>
+<dt><a href="#getManageAnalytics">getManageAnalytics(request, reply)</a> ⇒ <code>Object</code></dt>
+<dd></dd>
+<dt><a href="#getManageLogs">getManageLogs(request, reply)</a> ⇒ <code>Array.&lt;Object&gt;</code></dt>
+<dd></dd>
+<dt><a href="#getManageUsage">getManageUsage(request, reply)</a> ⇒ <code>Object</code></dt>
+<dd></dd>
+<dt><a href="#getManageHostData">getManageHostData(request, reply)</a> ⇒ <code>Object</code></dt>
+<dd></dd>
 <dt><a href="#BuilderRoutes">BuilderRoutes(fastify, options)</a> ⇒ <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>string</code> | <code>Object</code> | <code>Object</code> | <code>string</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>Array.&lt;Object&gt;</code></dt>
 <dd><p>Retrieves event structure data based on the provided event and type.</p>
 </dd>
@@ -26,43 +34,88 @@ The available routes are:</p>
 </dd>
 </dl>
 
-<a name="AnalyticRoutes"></a>
+<a name="routes"></a>
 
-## AnalyticRoutes(fastify, options) ⇒ <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code>
+## routes()
 Registers routes for managing analytics, logs, usage, and host data with the Fastify server.This function sets up several endpoints to retrieve analytics, logs, usage statistics, and host data, with options to filter based on time periods, hosts, paths, and methods.The available routes are:- **GET** `/manage/analytics`: Retrieves various charts (area, sankey, radar) based on transaction logs and specified time periods.- **GET** `/manage/logs`: Retrieves system and Sera logs, filtering and extracting log data based on time periods and log types.- **GET** `/manage/usage`: Retrieves usage statistics based on hosts, paths, methods, and specified time periods.- **GET** `/manage/hostdata`: Retrieves host-related data, filtered by hosts, paths, and methods.
 
 **Kind**: global function  
-**Summary**: Retrieves detailed host data filtered by hosts, paths, methods, and time periods.  
-**Returns**: <code>Object</code> - The charts data for the specified period, including endpoint area, sankey, and radar charts.<code>Array.&lt;Object&gt;</code> - A list of log entries, each with a timestamp, type, and message.<code>Object</code> - The usage graph data for the specified period.<code>Object</code> - The filtered host data for the specified period.  
+<a name="getManageAnalytics"></a>
+
+## getManageAnalytics(request, reply) ⇒ <code>Object</code>
+**Kind**: global function  
+**Summary**: Retrieves endpoint analytics, including charts for specific periods and hosts.  
+**Returns**: <code>Object</code> - The charts data for the specified period, including endpoint area, sankey, and radar charts.  
 **Throws**:
 
 - <code>Error</code> If an error occurs while retrieving the analytics data.
-- <code>Error</code> If an error occurs while retrieving the log data.
-- <code>Error</code> If an error occurs while retrieving the usage data.
-- <code>Error</code> If an error occurs while retrieving the host data.
 
-**Route**: <code>GET</code> /manage/analytics  
-**Route**: <code>GET</code> /manage/logs  
-**Route**: <code>GET</code> /manage/usage  
-**Route**: <code>GET</code> /manage/hostdata  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| fastify | <code>FastifyInstance</code> | The Fastify instance to register the routes on. |
-| options | <code>Object</code> | The options object for route configuration. |
+| request | <code>object</code> | The Fastify request object. |
+| reply | <code>Object</code> | The Fastify reply object. |
 | request.query | <code>Object</code> | The query parameters for retrieving analytics. |
 | request.query.period | <code>string</code> | The time period for the analytics (e.g., hourly, daily, weekly, monthly, custom). |
 | [request.query.host] | <code>string</code> | The hostname to filter analytics. |
 | [request.query.startDate] | <code>string</code> | The start date for custom period analytics (required for custom period). |
 | [request.query.endDate] | <code>string</code> | The end date for custom period analytics (required for custom period). |
+
+<a name="getManageLogs"></a>
+
+## getManageLogs(request, reply) ⇒ <code>Array.&lt;Object&gt;</code>
+**Kind**: global function  
+**Summary**: Retrieves system and Sera logs, filtering by log type and extracting timestamped log data from the last 100 lines.  
+**Returns**: <code>Array.&lt;Object&gt;</code> - A list of log entries, each with a timestamp, type, and message.  
+**Throws**:
+
+- <code>Error</code> If an error occurs while retrieving the log data.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| request | <code>object</code> | The Fastify request object. |
+| reply | <code>Object</code> | The Fastify reply object. |
 | request.query | <code>Object</code> | The query parameters for retrieving logs. |
 | request.query.period | <code>string</code> | The time period for retrieving logs. |
 | request.query.type | <code>string</code> | The type of logs to retrieve (e.g., seraLogs, systemLogs). |
+
+<a name="getManageUsage"></a>
+
+## getManageUsage(request, reply) ⇒ <code>Object</code>
+**Kind**: global function  
+**Summary**: Retrieves usage statistics filtered by hosts, paths, methods, and time periods.  
+**Returns**: <code>Object</code> - The usage graph data for the specified period.  
+**Throws**:
+
+- <code>Error</code> If an error occurs while retrieving the usage data.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| request | <code>object</code> | The Fastify request object. |
+| reply | <code>Object</code> | The Fastify reply object. |
 | request.query | <code>Object</code> | The query parameters for retrieving usage data. |
 | request.query.period | <code>string</code> | The time period for usage statistics (e.g., hourly, daily, weekly, monthly, custom). |
 | [request.query.host] | <code>string</code> | The hostname to filter usage data. |
 | [request.query.path] | <code>string</code> | The path to filter usage data. |
 | [request.query.method] | <code>string</code> | The HTTP method to filter usage data. |
+
+<a name="getManageHostData"></a>
+
+## getManageHostData(request, reply) ⇒ <code>Object</code>
+**Kind**: global function  
+**Summary**: Retrieves detailed host data, filtering by hosts, paths, methods, and time periods.  
+**Returns**: <code>Object</code> - The filtered host data for the specified period.  
+**Throws**:
+
+- <code>Error</code> If an error occurs while retrieving the host data.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| request | <code>object</code> | The Fastify request object. |
+| reply | <code>Object</code> | The Fastify reply object. |
 | request.query | <code>Object</code> | The query parameters for retrieving host data. |
 | request.query.period | <code>string</code> | The time period for the host data (e.g., hourly, daily, weekly, monthly, custom). |
 | [request.query.host] | <code>string</code> | The hostname to filter host data. |
