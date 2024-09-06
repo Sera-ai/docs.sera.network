@@ -1,7 +1,7 @@
 ## Functions
 
 <dl>
-<dt><a href="#AnalyticRoutes">AnalyticRoutes(fastify, options)</a> ⇒ <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code></dt>
+<dt><a href="#GET /manage/analytics">GET /manage/analytics(fastify, options)</a> ⇒ <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code></dt>
 <dd><p>Retrieves detailed host data, filtering by hosts, paths, methods, and time periods.</p>
 </dd>
 <dt><a href="#BuilderRoutes">BuilderRoutes(fastify, options)</a> ⇒ <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>string</code> | <code>Object</code> | <code>Object</code> | <code>string</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>Array.&lt;Object&gt;</code></dt>
@@ -18,9 +18,9 @@
 </dd>
 </dl>
 
-<a name="AnalyticRoutes"></a>
+<a name="GET /manage/analytics"></a>
 
-## AnalyticRoutes(fastify, options) ⇒ <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code>
+## GET /manage/analytics(fastify, options) ⇒ <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code>
 Retrieves detailed host data, filtering by hosts, paths, methods, and time periods.
 
 **Kind**: global function  
@@ -32,7 +32,6 @@ Retrieves detailed host data, filtering by hosts, paths, methods, and time perio
 - <code>Error</code> If an error occurs while retrieving the usage data.
 - <code>Error</code> If an error occurs while retrieving the host data.
 
-**Route**: <code>GET</code> /manage/analytics  
 **Route**: GET /manage/logs  
 **Route**: GET /manage/usage  
 **Route**: GET /manage/hostdata  
