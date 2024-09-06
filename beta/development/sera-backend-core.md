@@ -1,8 +1,16 @@
 ## Functions
 
 <dl>
-<dt><a href="#GET /manage/analytics">GET /manage/analytics(fastify, options)</a> ⇒ <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code></dt>
-<dd><p>Retrieves detailed host data, filtering by hosts, paths, methods, and time periods.</p>
+<dt><a href="#AnalyticRoutes">AnalyticRoutes(fastify, options)</a> ⇒ <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code></dt>
+<dd><p>Registers routes for managing analytics, logs, usage, and host data with the Fastify server.</p>
+<p>This function sets up several endpoints to retrieve analytics, logs, usage statistics, and host data, with options to filter based on time periods, hosts, paths, and methods.
+The available routes are:</p>
+<ul>
+<li><strong>GET</strong> <code>/manage/analytics</code>: Retrieves various charts (area, sankey, radar) based on transaction logs and specified time periods.</li>
+<li><strong>GET</strong> <code>/manage/logs</code>: Retrieves system and Sera logs, filtering and extracting log data based on time periods and log types.</li>
+<li><strong>GET</strong> <code>/manage/usage</code>: Retrieves usage statistics based on hosts, paths, methods, and specified time periods.</li>
+<li><strong>GET</strong> <code>/manage/hostdata</code>: Retrieves host-related data, filtered by hosts, paths, and methods.</li>
+</ul>
 </dd>
 <dt><a href="#BuilderRoutes">BuilderRoutes(fastify, options)</a> ⇒ <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>string</code> | <code>Object</code> | <code>Object</code> | <code>string</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>Array.&lt;Object&gt;</code></dt>
 <dd><p>Retrieves event structure data based on the provided event and type.</p>
@@ -18,12 +26,13 @@
 </dd>
 </dl>
 
-<a name="GET /manage/analytics"></a>
+<a name="AnalyticRoutes"></a>
 
-## GET /manage/analytics(fastify, options) ⇒ <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code>
-Retrieves detailed host data, filtering by hosts, paths, methods, and time periods.
+## AnalyticRoutes(fastify, options) ⇒ <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code>
+Registers routes for managing analytics, logs, usage, and host data with the Fastify server.This function sets up several endpoints to retrieve analytics, logs, usage statistics, and host data, with options to filter based on time periods, hosts, paths, and methods.The available routes are:- **GET** `/manage/analytics`: Retrieves various charts (area, sankey, radar) based on transaction logs and specified time periods.- **GET** `/manage/logs`: Retrieves system and Sera logs, filtering and extracting log data based on time periods and log types.- **GET** `/manage/usage`: Retrieves usage statistics based on hosts, paths, methods, and specified time periods.- **GET** `/manage/hostdata`: Retrieves host-related data, filtered by hosts, paths, and methods.
 
 **Kind**: global function  
+**Summary**: Retrieves detailed host data filtered by hosts, paths, methods, and time periods.  
 **Returns**: <code>Object</code> - The charts data for the specified period, including endpoint area, sankey, and radar charts.<code>Array.&lt;Object&gt;</code> - A list of log entries, each with a timestamp, type, and message.<code>Object</code> - The usage graph data for the specified period.<code>Object</code> - The filtered host data for the specified period.  
 **Throws**:
 
@@ -32,9 +41,10 @@ Retrieves detailed host data, filtering by hosts, paths, methods, and time perio
 - <code>Error</code> If an error occurs while retrieving the usage data.
 - <code>Error</code> If an error occurs while retrieving the host data.
 
-**Route**: GET /manage/logs  
-**Route**: GET /manage/usage  
-**Route**: GET /manage/hostdata  
+**Route**: <code>GET</code> /manage/analytics  
+**Route**: <code>GET</code> /manage/logs  
+**Route**: <code>GET</code> /manage/usage  
+**Route**: <code>GET</code> /manage/hostdata  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -49,7 +59,7 @@ Retrieves detailed host data, filtering by hosts, paths, methods, and time perio
 | request.query.period | <code>string</code> | The time period for retrieving logs. |
 | request.query.type | <code>string</code> | The type of logs to retrieve (e.g., seraLogs, systemLogs). |
 | request.query | <code>Object</code> | The query parameters for retrieving usage data. |
-| request.query.period | <code>string</code> | The time period for the usage statistics (e.g., hourly, daily, weekly, monthly, custom). |
+| request.query.period | <code>string</code> | The time period for usage statistics (e.g., hourly, daily, weekly, monthly, custom). |
 | [request.query.host] | <code>string</code> | The hostname to filter usage data. |
 | [request.query.path] | <code>string</code> | The path to filter usage data. |
 | [request.query.method] | <code>string</code> | The HTTP method to filter usage data. |
