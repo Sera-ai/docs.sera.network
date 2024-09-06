@@ -2,16 +2,7 @@
 
 <dl>
 <dt><a href="#routes">routes()</a></dt>
-<dd><p>Registers routes for managing analytics, logs, usage, and host data with the Fastify server.</p>
-<p>This function sets up several endpoints to retrieve analytics, logs, usage statistics, and host data, with options to filter based on time periods, hosts, paths, and methods.
-The available routes are:</p>
-<ul>
-<li><strong>GET</strong> <code>/manage/analytics</code>: Retrieves various charts (area, sankey, radar) based on transaction logs and specified time periods.</li>
-<li><strong>GET</strong> <code>/manage/logs</code>: Retrieves system and Sera logs, filtering and extracting log data based on time periods and log types.</li>
-<li><strong>GET</strong> <code>/manage/usage</code>: Retrieves usage statistics based on hosts, paths, methods, and specified time periods.</li>
-<li><strong>GET</strong> <code>/manage/hostdata</code>: Retrieves host-related data, filtered by hosts, paths, and methods.</li>
-</ul>
-</dd>
+<dd></dd>
 <dt><a href="#getManageAnalytics">getManageAnalytics(request, reply)</a> ⇒ <code>Object</code></dt>
 <dd></dd>
 <dt><a href="#getManageLogs">getManageLogs(request, reply)</a> ⇒ <code>Array.&lt;Object&gt;</code></dt>
@@ -37,9 +28,8 @@ The available routes are:</p>
 <a name="routes"></a>
 
 ## routes()
-Registers routes for managing analytics, logs, usage, and host data with the Fastify server.This function sets up several endpoints to retrieve analytics, logs, usage statistics, and host data, with options to filter based on time periods, hosts, paths, and methods.The available routes are:- **GET** `/manage/analytics`: Retrieves various charts (area, sankey, radar) based on transaction logs and specified time periods.- **GET** `/manage/logs`: Retrieves system and Sera logs, filtering and extracting log data based on time periods and log types.- **GET** `/manage/usage`: Retrieves usage statistics based on hosts, paths, methods, and specified time periods.- **GET** `/manage/hostdata`: Retrieves host-related data, filtered by hosts, paths, and methods.
-
 **Kind**: global function  
+**Group**: Analytics EndpointsRegisters routes for managing analytics, logs, usage, and host data with the Fastify server.This function sets up several endpoints to retrieve analytics, logs, usage statistics, and host data, with options to filter based on time periods, hosts, paths, and methods.The available routes are:- **GET** `/manage/analytics`: Retrieves various charts (area, sankey, radar) based on transaction logs and specified time periods.- **GET** `/manage/logs`: Retrieves system and Sera logs, filtering and extracting log data based on time periods and log types.- **GET** `/manage/usage`: Retrieves usage statistics based on hosts, paths, methods, and specified time periods.- **GET** `/manage/hostdata`: Retrieves host-related data, filtered by hosts, paths, and methods.  
 <a name="getManageAnalytics"></a>
 
 ## getManageAnalytics(request, reply) ⇒ <code>Object</code>
@@ -50,6 +40,7 @@ Registers routes for managing analytics, logs, usage, and host data with the Fas
 
 - <code>Error</code> If an error occurs while retrieving the analytics data.
 
+**Group**: Analytics Endpoints  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -71,6 +62,7 @@ Registers routes for managing analytics, logs, usage, and host data with the Fas
 
 - <code>Error</code> If an error occurs while retrieving the log data.
 
+**Group**: Analytics Endpoints  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -90,6 +82,7 @@ Registers routes for managing analytics, logs, usage, and host data with the Fas
 
 - <code>Error</code> If an error occurs while retrieving the usage data.
 
+**Group**: Analytics Endpoints  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -111,6 +104,7 @@ Registers routes for managing analytics, logs, usage, and host data with the Fas
 
 - <code>Error</code> If an error occurs while retrieving the host data.
 
+**Group**: Analytics Endpoints  
 
 | Param | Type | Description |
 | --- | --- | --- |
