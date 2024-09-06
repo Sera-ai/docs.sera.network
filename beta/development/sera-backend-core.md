@@ -3,7 +3,7 @@
 <dl>
 <dt><a href="#routes">routes()</a></dt>
 <dd></dd>
-<dt><a href="#getManageAnalytics">getManageAnalytics(request, reply)</a> ⇒ <code>Object</code></dt>
+<dt><a href="#/manage/analytics">/manage/analytics(request, reply)</a> ⇒ <code>Object</code></dt>
 <dd></dd>
 <dt><a href="#getManageLogs">getManageLogs(request, reply)</a> ⇒ <code>Array.&lt;Object&gt;</code></dt>
 <dd></dd>
@@ -30,9 +30,9 @@
 ## routes()
 **Kind**: global function  
 **Group**: Analytics EndpointsRegisters routes for managing analytics, logs, usage, and host data with the Fastify server.This function sets up several endpoints to retrieve analytics, logs, usage statistics, and host data, with options to filter based on time periods, hosts, paths, and methods.The available routes are:- **GET** `/manage/analytics`: Retrieves various charts (area, sankey, radar) based on transaction logs and specified time periods.- **GET** `/manage/logs`: Retrieves system and Sera logs, filtering and extracting log data based on time periods and log types.- **GET** `/manage/usage`: Retrieves usage statistics based on hosts, paths, methods, and specified time periods.- **GET** `/manage/hostdata`: Retrieves host-related data, filtered by hosts, paths, and methods.  
-<a name="getManageAnalytics"></a>
+<a name="/manage/analytics"></a>
 
-## getManageAnalytics(request, reply) ⇒ <code>Object</code>
+## /manage/analytics(request, reply) ⇒ <code>Object</code>
 **Kind**: global function  
 **Summary**: Retrieves endpoint analytics, including charts for specific periods and hosts.  
 **Returns**: <code>Object</code> - The charts data for the specified period, including endpoint area, sankey, and radar charts.  
