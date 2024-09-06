@@ -32,7 +32,7 @@ Retrieves detailed host data, filtering by hosts, paths, methods, and time perio
 - <code>Error</code> If an error occurs while retrieving the usage data.
 - <code>Error</code> If an error occurs while retrieving the host data.
 
-**Route**: GET /manage/analytics  
+**Route**: <code>GET</code> /manage/analytics  
 **Route**: GET /manage/logs  
 **Route**: GET /manage/usage  
 **Route**: GET /manage/hostdata  
