@@ -1,287 +1,688 @@
-## Functions
+# API Documentation
 
-<dl>
-<dt><a href="#routes">routes()</a></dt>
-<dd></dd>
-<dt><a href="#/manage/analytics">/manage/analytics(request, reply)</a> ⇒ <code>Object</code></dt>
-<dd></dd>
-<dt><a href="#getManageLogs">getManageLogs(request, reply)</a> ⇒ <code>Array.&lt;Object&gt;</code></dt>
-<dd></dd>
-<dt><a href="#getManageUsage">getManageUsage(request, reply)</a> ⇒ <code>Object</code></dt>
-<dd></dd>
-<dt><a href="#getManageHostData">getManageHostData(request, reply)</a> ⇒ <code>Object</code></dt>
-<dd></dd>
-<dt><a href="#BuilderRoutes">BuilderRoutes(fastify, options)</a> ⇒ <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>string</code> | <code>Object</code> | <code>Object</code> | <code>string</code> | <code>Object</code> | <code>Object</code> | <code>Object</code> | <code>Array.&lt;Object&gt;</code></dt>
-<dd><p>Retrieves event structure data based on the provided event and type.</p>
-</dd>
-<dt><a href="#EventRoutes">EventRoutes(fastify, options)</a> ⇒ <code>Array.&lt;Object&gt;</code> | <code>string</code> | <code>Array.&lt;Object&gt;</code></dt>
-<dd><p>Retrieves a list of available event playbooks, each with its name, type, and enabled status.</p>
-</dd>
-<dt><a href="#HostRoutes">HostRoutes(fastify, options)</a> ⇒ <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Object</code> | <code>Object</code> | <code>Object</code></dt>
-<dd><p>Retrieves the DNS configuration for a given host.</p>
-</dd>
-<dt><a href="#IntegrationRoutes">IntegrationRoutes(fastify, options)</a> ⇒ <code>Object</code> | <code>Object</code> | <code>Array.&lt;Object&gt;</code> | <code>Array.&lt;Object&gt;</code></dt>
-<dd><p>Retrieves all the nodes (plugins) associated with builder integrations.</p>
-</dd>
-</dl>
 
-<a name="routes"></a>
 
-## routes()
-**Kind**: global function  
-**Group**: Analytics EndpointsRegisters routes for managing analytics, logs, usage, and host data with the Fastify server.This function sets up several endpoints to retrieve analytics, logs, usage statistics, and host data, with options to filter based on time periods, hosts, paths, and methods.The available routes are:- **GET** `/manage/analytics`: Retrieves various charts (area, sankey, radar) based on transaction logs and specified time periods.- **GET** `/manage/logs`: Retrieves system and Sera logs, filtering and extracting log data based on time periods and log types.- **GET** `/manage/usage`: Retrieves usage statistics based on hosts, paths, methods, and specified time periods.- **GET** `/manage/hostdata`: Retrieves host-related data, filtered by hosts, paths, and methods.  
-<a name="/manage/analytics"></a>
 
-## /manage/analytics(request, reply) ⇒ <code>Object</code>
-**Kind**: global function  
-**Summary**: Retrieves endpoint analytics, including charts for specific periods and hosts.  
-**Returns**: <code>Object</code> - The charts data for the specified period, including endpoint area, sankey, and radar charts.  
-**Throws**:
 
-- <code>Error</code> If an error occurs while retrieving the analytics data.
 
-**Group**: Analytics Endpoints  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| request | <code>object</code> | The Fastify request object. |
-| reply | <code>Object</code> | The Fastify reply object. |
-| request.query | <code>Object</code> | The query parameters for retrieving analytics. |
-| request.query.period | <code>string</code> | The time period for the analytics (e.g., hourly, daily, weekly, monthly, custom). |
-| [request.query.host] | <code>string</code> | The hostname to filter analytics. |
-| [request.query.startDate] | <code>string</code> | The start date for custom period analytics (required for custom period). |
-| [request.query.endDate] | <code>string</code> | The end date for custom period analytics (required for custom period). |
 
-<a name="getManageLogs"></a>
 
-## getManageLogs(request, reply) ⇒ <code>Array.&lt;Object&gt;</code>
-**Kind**: global function  
-**Summary**: Retrieves system and Sera logs, filtering by log type and extracting timestamped log data from the last 100 lines.  
-**Returns**: <code>Array.&lt;Object&gt;</code> - A list of log entries, each with a timestamp, type, and message.  
-**Throws**:
 
-- <code>Error</code> If an error occurs while retrieving the log data.
 
-**Group**: Analytics Endpoints  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| request | <code>object</code> | The Fastify request object. |
-| reply | <code>Object</code> | The Fastify reply object. |
-| request.query | <code>Object</code> | The query parameters for retrieving logs. |
-| request.query.period | <code>string</code> | The time period for retrieving logs. |
-| request.query.type | <code>string</code> | The type of logs to retrieve (e.g., seraLogs, systemLogs). |
 
-<a name="getManageUsage"></a>
 
-## getManageUsage(request, reply) ⇒ <code>Object</code>
-**Kind**: global function  
-**Summary**: Retrieves usage statistics filtered by hosts, paths, methods, and time periods.  
-**Returns**: <code>Object</code> - The usage graph data for the specified period.  
-**Throws**:
 
-- <code>Error</code> If an error occurs while retrieving the usage data.
 
-**Group**: Analytics Endpoints  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| request | <code>object</code> | The Fastify request object. |
-| reply | <code>Object</code> | The Fastify reply object. |
-| request.query | <code>Object</code> | The query parameters for retrieving usage data. |
-| request.query.period | <code>string</code> | The time period for usage statistics (e.g., hourly, daily, weekly, monthly, custom). |
-| [request.query.host] | <code>string</code> | The hostname to filter usage data. |
-| [request.query.path] | <code>string</code> | The path to filter usage data. |
-| [request.query.method] | <code>string</code> | The HTTP method to filter usage data. |
 
-<a name="getManageHostData"></a>
 
-## getManageHostData(request, reply) ⇒ <code>Object</code>
-**Kind**: global function  
-**Summary**: Retrieves detailed host data, filtering by hosts, paths, methods, and time periods.  
-**Returns**: <code>Object</code> - The filtered host data for the specified period.  
-**Throws**:
 
-- <code>Error</code> If an error occurs while retrieving the host data.
 
-**Group**: Analytics Endpoints  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| request | <code>object</code> | The Fastify request object. |
-| reply | <code>Object</code> | The Fastify reply object. |
-| request.query | <code>Object</code> | The query parameters for retrieving host data. |
-| request.query.period | <code>string</code> | The time period for the host data (e.g., hourly, daily, weekly, monthly, custom). |
-| [request.query.host] | <code>string</code> | The hostname to filter host data. |
-| [request.query.path] | <code>string</code> | The path to filter host data. |
-| [request.query.method] | <code>string</code> | The HTTP method to filter host data. |
 
-<a name="BuilderRoutes"></a>
 
-## BuilderRoutes(fastify, options) ⇒ <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code> \| <code>Object</code> \| <code>Object</code> \| <code>string</code> \| <code>Object</code> \| <code>Object</code> \| <code>string</code> \| <code>Object</code> \| <code>Object</code> \| <code>Object</code> \| <code>Array.&lt;Object&gt;</code>
-Retrieves event structure data based on the provided event and type.
 
-**Kind**: global function  
-**Returns**: <code>Array.&lt;Object&gt;</code> - An array of builder data, populated with host and builder IDs.<code>Object</code> - The saved builder endpoint data.<code>Object</code> - The builder details, including OAS, nodes, and edges.<code>Object</code> - The updated builder endpoint data.<code>Object</code> - The saved node data.<code>string</code> - A success message if the node is deleted.<code>Object</code> - The saved edge data.<code>Object</code> - The updated edge data.<code>string</code> - A success message if the edge is deleted.<code>Object</code> - The saved builder data.<code>Object</code> - The node data.<code>Object</code> \| <code>Array.&lt;Object&gt;</code> - The event structure data.  
-**Throws**:
 
-- <code>Error</code> If an error occurs while retrieving builder data.
-- <code>Error</code> If an error occurs while creating the builder.
-- <code>Error</code> If the builder, host, or endpoint is not found.
-- <code>Error</code> If an error occurs while updating the builder.
-- <code>Error</code> If an error occurs while creating the node.
-- <code>Error</code> If the node or builder is not found.
-- <code>Error</code> If an error occurs while creating the edge.
-- <code>Error</code> If an error occurs while updating the edge.
-- <code>Error</code> If the edge or builder is not found.
-- <code>Error</code> If an error occurs while creating the builder.
-- <code>Error</code> If the node is not found.
-- <code>Error</code> If an error occurs while retrieving the event structure data.
 
-**Route**: GET /manage/builders  
-**Route**: POST /manage/builder  
-**Route**: GET /manage/builder  
-**Route**: POST /manage/builder/update  
-**Route**: POST /manage/builder/node  
-**Route**: POST /manage/builder/node/delete  
-**Route**: POST /manage/builder/edge  
-**Route**: PATCH /manage/builder/edge  
-**Route**: POST /manage/builder/edge/delete  
-**Route**: POST /manage/builder/create  
-**Route**: GET /manage/builder/getNode  
-**Route**: GET /manage/builder/getNodeStruc  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| fastify | <code>FastifyInstance</code> | The Fastify instance to register the routes on. |
-| options | <code>Object</code> | The options object for route configuration. |
-| request.query | <code>Object</code> | The query parameters for filtering builder data. |
-| [request.query.id] | <code>string</code> | The ID of the builder to retrieve. |
-| request.body | <code>Object</code> | The request body containing host and endpoint data. |
-| request.body.host_id | <code>string</code> | The ID of the host associated with the builder. |
-| request.body.hostname | <code>string</code> | The hostname for the endpoint. |
-| request.body.endpoint | <code>string</code> | The endpoint path. |
-| request.body.method | <code>string</code> | The HTTP method for the endpoint. |
-| request.query | <code>Object</code> | The query parameters for retrieving the builder. |
-| [request.query.path] | <code>string</code> | The path to the endpoint. |
-| [request.query.event] | <code>string</code> | The event to filter builders. |
-| request.body | <code>Object</code> | The request body containing the host and builder data. |
-| request.body.hostname | <code>string</code> | The hostname to update. |
-| request.body.endpoint | <code>string</code> | The endpoint to update. |
-| request.body.method | <code>string</code> | The HTTP method for the update. |
-| request.body.builder_id | <code>string</code> | The ID of the builder to update. |
-| request.body | <code>Object</code> | The request body containing the node data. |
-| [request.query.type] | <code>string</code> | The type of the builder (e.g., builder, event, integration). |
-| request.headers["x-sera-builder" | <code>string</code> | The builder ID from the headers. |
-| request.body | <code>Object</code> | The request body containing the node data. |
-| request.headers["x-sera-builder" | <code>string</code> | The builder ID from the headers. |
-| request.body | <code>Object</code> | The request body containing edge data. |
-| request.query.type | <code>string</code> | The type of the builder (e.g., builder, event). |
-| request.headers["x-sera-builder" | <code>string</code> | The builder ID from the headers. |
-| request.body | <code>Object</code> | The request body containing the updated edge data. |
-| request.headers["x-sera-builder" | <code>string</code> | The builder ID from the headers. |
-| request.body | <code>Object</code> | The request body containing the edge data. |
-| request.headers["x-sera-builder" | <code>string</code> | The builder ID from the headers. |
-| request.body | <code>Object</code> | The request body containing host and path data. |
-| request.query | <code>Object</code> | The query parameters for retrieving the node. |
-| request.query.id | <code>string</code> | The ID of the node to retrieve. |
-| request.query | <code>Object</code> | The query parameters for retrieving the structure. |
-| request.query.event | <code>string</code> | The event to filter the structure. |
-| [request.query.type] | <code>string</code> | The type of event structure to retrieve. |
 
-<a name="EventRoutes"></a>
 
-## EventRoutes(fastify, options) ⇒ <code>Array.&lt;Object&gt;</code> \| <code>string</code> \| <code>Array.&lt;Object&gt;</code>
-Retrieves a list of available event playbooks, each with its name, type, and enabled status.
 
-**Kind**: global function  
-**Returns**: <code>Array.&lt;Object&gt;</code> - A list of events, each containing its transformed fields.<code>string</code> - A confirmation message indicating the event has been created.<code>Array.&lt;Object&gt;</code> - A list of playbooks with links to their respective details.  
-**Throws**:
 
-- <code>Error</code> If an error occurs while retrieving the events.
-- <code>Error</code> If an error occurs while creating the event.
-- <code>Error</code> If an error occurs while retrieving the playbooks.
 
-**Route**: GET /manage/events  
-**Route**: POST /manage/events  
-**Route**: GET /manage/events/playbook  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| fastify | <code>FastifyInstance</code> | The Fastify instance to register the routes on. |
-| options | <code>Object</code> | The options object for route configuration. |
-| request.query | <code>Object</code> | The query parameters for retrieving events. |
-| [request.query.id] | <code>string</code> | The ID of the specific event to retrieve. |
-| request.body | <code>Object</code> | The request body containing event details. |
-| request.body.event_name | <code>string</code> | The name of the event. |
-| request.body.data | <code>Object</code> | The data associated with the event. |
 
-<a name="HostRoutes"></a>
 
-## HostRoutes(fastify, options) ⇒ <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Object</code> \| <code>Object</code> \| <code>Object</code>
-Retrieves the DNS configuration for a given host.
 
-**Kind**: global function  
-**Returns**: <code>Object</code> - The saved host information, including OAS and DNS configuration.<code>Array.&lt;Object&gt;</code> - The list of hosts or the specific host details.<code>Object</code> - The updated host information.<code>Object</code> - The OAS specification for the given host or all OAS data if no host is specified.<code>Object</code> - The DNS configuration for the given host.  
-**Throws**:
 
-- <code>Error</code> If the OAS is invalid or an error occurs while saving data.
-- <code>Error</code> If an error occurs while retrieving the host data.
-- <code>Error</code> If the host is not found or an error occurs during the update.
-- <code>Error</code> If an error occurs while retrieving the OAS data.
-- <code>Error</code> If the host is not found or an error occurs while retrieving the DNS data.
 
-**Route**: POST /manage/host  
-**Route**: GET /manage/host  
-**Route**: PATCH /manage/host  
-**Route**: GET /manage/host/oas  
-**Route**: GET /manage/host/dns  
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| fastify | <code>FastifyInstance</code> |  | The Fastify instance to register the routes on. |
-| options | <code>Object</code> |  | The options object for route configuration. |
-| request.body | <code>Object</code> |  | The request body containing host information. |
-| [request.body.hostname] | <code>string</code> |  | The hostname for the new host. |
-| [request.body.oas] | <code>string</code> |  | The OpenAPI specification in JSON or YAML format. |
-| [request.body.port] | <code>number</code> | <code>80</code> | The port for the new host. |
-| request.query | <code>Object</code> |  | The query parameters for retrieving hosts. |
-| [request.query.id] | <code>string</code> |  | The ID of the host to retrieve. |
-| request.body | <code>Object</code> |  | The request body containing update data. |
-| request.body.host_id | <code>string</code> |  | The ID of the host to update. |
-| request.body.field | <code>string</code> |  | The specific field in `sera_config` to update. |
-| request.body.key | <code>any</code> |  | The new value to set for the field. |
-| request.query | <code>Object</code> |  | The query parameters for retrieving OAS data. |
-| [request.query.host] | <code>string</code> |  | The hostname of the host to retrieve the OAS for. |
-| request.query | <code>Object</code> |  | The query parameters for retrieving DNS data. |
-| request.query.host | <code>string</code> |  | The hostname of the host to retrieve the DNS configuration for. |
 
-<a name="IntegrationRoutes"></a>
 
-## IntegrationRoutes(fastify, options) ⇒ <code>Object</code> \| <code>Object</code> \| <code>Array.&lt;Object&gt;</code> \| <code>Array.&lt;Object&gt;</code>
-Retrieves all the nodes (plugins) associated with builder integrations.
 
-**Kind**: global function  
-**Returns**: <code>Object</code> - The slug of the newly created integration.<code>Object</code> - The nodes and edges associated with the specified integration.<code>Array.&lt;Object&gt;</code> - An array of integrations, each containing the name, type, slug, and enabled status.<code>Array.&lt;Object&gt;</code> - An array of plugins (nodes), each containing the name, type, and ID.  
-**Throws**:
 
-- <code>Error</code> If the required parameters are missing or the name is duplicated.
-- <code>Error</code> If the integration is not found or an error occurs while retrieving the data.
-- <code>Error</code> If an error occurs while retrieving the integrations.
-- <code>Error</code> If an error occurs while retrieving the plugins.
+## GET /manage/analytics
 
-**Route**: POST /manage/builder/integration  
-**Route**: GET /manage/builder/integration  
-**Route**: GET /manage/builder/integrations  
-**Route**: GET /manage/builder/integration/plugins  
+**Description:** Fetch analytics data for different time periods.
 
-| Param | Type | Description |
-| --- | --- | --- |
-| fastify | <code>FastifyInstance</code> | The Fastify instance to register the routes on. |
-| options | <code>Object</code> | The options object for route configuration. |
-| request.body | <code>Object</code> | The request body containing the builder integration details. |
-| request.body.name | <code>string</code> | The name of the integration (required). |
-| [request.body.hostname] | <code>string</code> | The hostname of the integration (optional). |
-| request.query | <code>Object</code> | The query parameters for retrieving the integration. |
-| request.query.slug | <code>string</code> | The slug of the integration to retrieve. |
+
+**Returns:** endpointAreaChart
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| period | string | query | Time period for fetching analytics ('hourly', 'daily', 'weekly', 'monthly', or 'custom'). |
+| host | string | query | Filter analytics data by specific host. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| endpointAreaChart | **object** - Data for area chart visualization. |
+| endpointSankeyChart | **object** - Data for Sankey chart visualization. |
+| endpointRadialChart | **object** - Data for radial chart visualization. |
+
+### Example:
+```bash
+GET /manage/analytics?period=daily&host=myhost.com
+```
+ ---
+
+
+## GET /manage/logs
+
+**Description:** Fetch recent log entries from server logs.
+
+
+**Returns:** logs
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| period | string | query | Time period for fetching logs ('hourly', 'daily', 'weekly', 'monthly', or 'custom'). |
+| type | string | query | Type of log to fetch (e.g., 'seraLogs', 'systemLogs'). |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| logs | **object** - Recent log entries sorted by timestamp. |
+| types | **object** - Available log types and their corresponding log files. |
+
+### Example:
+```bash
+GET /manage/logs?period=weekly&type=seraLogs
+```
+ ---
+
+
+## GET /manage/usage
+
+**Description:** Fetch usage data filtered by time period, host, and HTTP method.
+
+
+**Returns:** usageGraph
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| period | string | query | Time period for fetching usage data ('hourly', 'daily', 'weekly', 'monthly', or 'custom'). |
+| host | string | query | Filter usage data by specific host. |
+| path | string | query | Filter usage data by request path. |
+| method | string | query | Filter usage data by HTTP method (e.g., 'GET', 'POST'). |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| usageGraph | **object** - Data for the usage graph visualization. |
+
+### Example:
+```bash
+GET /manage/usage?period=hourly&host=myhost.com&method=GET
+```
+ ---
+
+
+## GET /manage/hostdata
+
+**Description:** Fetch detailed data for a specific host.
+
+
+**Returns:** hostData
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| period | string | query | Time period for fetching host data ('hourly', 'daily', 'weekly', 'monthly', or 'custom'). |
+| host | string | query | Filter host data by specific hostname. |
+| path | string | query | Filter host data by request path. |
+| method | string | query | Filter host data by HTTP method (e.g., 'GET', 'POST'). |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| hostData | **object** - Host-specific data based on the provided filters. |
+
+### Example:
+```bash
+GET /manage/hostdata?period=daily&host=myhost.com&method=GET
+```
+ ---
+
+
+## GET /manage/builders
+
+**Description:** Fetch builder events and associated data.
+
+
+**Returns:** node_data
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| id | string | query | Optional ID to fetch specific builder event data. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| node_data | **object** - Data of the builder events. |
+
+### Example:
+```bash
+GET /manage/builders?id=12345
+```
+ ---
+
+
+## POST /manage/builder
+
+**Description:** Add new builder event data.
+
+
+**Returns:** dataToSave
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| hostname | string | body | Hostname to associate the builder event. |
+| host_id | string | body | Host ID related to the builder event. |
+| endpoint | string | body | Endpoint for the builder event. |
+| method | string | body | HTTP method for the builder event. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| dataToSave | **object** - Saved builder event data. |
+
+### Example:
+```bash
+POST /manage/builder
+```
+ ---
+
+
+## GET /manage/builder
+
+**Description:** Fetch detailed builder data based on path and method.
+
+
+**Returns:** builder
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| path | string | query | Path for the builder event. |
+| method | string | query | HTTP method to filter. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| builder | **object** - Detailed builder data including nodes and edges. |
+
+### Example:
+```bash
+GET /manage/builder?path=/api/test&method=GET
+```
+ ---
+
+
+## POST /manage/builder/update
+
+**Description:** Update an existing builder event.
+
+
+**Returns:** dataToSave
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| hostname | string | body | Hostname of the builder event. |
+| endpoint | string | body | Endpoint to update. |
+| method | string | body | HTTP method of the event. |
+| builder_id | string | body | Builder ID for the event. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| dataToSave | **object** - Updated builder event data. |
+
+### Example:
+```bash
+POST /manage/builder/update
+```
+ ---
+
+
+## POST /manage/builder/node
+
+**Description:** Add a new node to the builder event.
+
+
+**Returns:** savedData
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| x-sera-builder | string | header | Builder ID for the event. |
+| body | object | body | Node details to be added. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| savedData | **object** - Saved node data. |
+
+### Example:
+```bash
+POST /manage/builder/node
+```
+ ---
+
+
+## GET /manage/events
+
+**Description:** Fetch events data, with optional filtering by event ID.
+
+
+**Returns:** transformedData
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| id | string | query | Optional ID to fetch a specific event. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| transformedData | **array** - Transformed list of events with filtered or formatted fields. |
+
+### Example:
+```bash
+GET /manage/events?id=12345
+```
+ ---
+
+
+## POST /manage/events
+
+**Description:** Create a new event with event name and data.
+
+
+**Returns:** message
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| event_name | string | body | Name of the event to create. |
+| data | object | body | Event data to be stored. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| message | **string** - Confirmation message after event creation. |
+
+### Example:
+```bash
+POST /manage/events
+```
+ ---
+
+
+## GET /manage/events/playbook
+
+**Description:** Fetch all playbook events.
+
+
+**Returns:** transformedData
+
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| transformedData | **array** - List of playbook events with names and types. |
+
+### Example:
+```bash
+GET /manage/events/playbook
+```
+ ---
+
+
+## POST /manage/host
+
+**Description:** Create a new host entry, including OAS and DNS configurations.
+
+
+**Returns:** dataToSave
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| hostname | string | body | Hostname for the new host. |
+| port | number | body | Optional port for the new host (default is 80). |
+| oas | object | body | Optional OAS (OpenAPI Specification) data for the host. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| dataToSave | **object** - Saved host data with OAS and DNS configurations. |
+
+### Example:
+```bash
+POST /manage/host
+```
+ ---
+
+
+## GET /manage/host
+
+**Description:** Fetch host data with optional filtering by host ID.
+
+
+**Returns:** node_data
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| id | string | query | Optional host ID to fetch specific host data. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| node_data | **object** - Host data with OAS specification. |
+
+### Example:
+```bash
+GET /manage/host?id=12345
+```
+ ---
+
+
+## PATCH /manage/host
+
+**Description:** Update the configuration of a host by host ID.
+
+
+**Returns:** updatedHost
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| host_id | string | body | Host ID to update. |
+| field | string | body | Field to update within `sera_config`. |
+| key | string | body | New value for the specified field. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| updatedHost | **object** - Updated host data. |
+
+### Example:
+```bash
+PATCH /manage/host
+```
+ ---
+
+
+## GET /manage/host/oas
+
+**Description:** Fetch OAS data for a specific host or all hosts.
+
+
+**Returns:** oas_data
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| host | string | query | Optional hostname to fetch specific OAS data. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| oas_data | **object** - OAS specification data. |
+
+### Example:
+```bash
+GET /manage/host/oas?host=myhost.com
+```
+ ---
+
+
+## GET /manage/host/dns
+
+**Description:** Fetch DNS configuration data for a specific host.
+
+
+**Returns:** dns_data
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| host | string | query | Hostname to fetch DNS configuration. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| dns_data | **object** - DNS configuration data. |
+
+### Example:
+```bash
+GET /manage/host/dns?host=myhost.com
+```
+ ---
+
+
+## POST /manage/builder/integration
+
+**Description:** Create a new integration builder.
+
+
+**Returns:** slug
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| body | object |  | Contains the name, hostname, and other optional fields for the integration. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| slug | **string** - The slug of the created integration. |
+
+### Example:
+```bash
+POST /manage/builder/integration
+```
+ ---
+
+
+## GET /manage/builder/integration
+
+**Description:** Fetch details of a specific integration builder by slug.
+
+
+**Returns:** builder
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| slug | string |  | Slug of the integration to fetch. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| builder | **object** - Builder details including nodes and edges. |
+
+### Example:
+```bash
+GET /manage/builder/integration?slug=integration-slug
+```
+ ---
+
+
+## GET /manage/builder/integrations
+
+**Description:** Fetch a list of all integration builders.
+
+
+**Returns:** transformedData
+
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| transformedData | **array** - A list of integration builders with names, types, and slugs. |
+
+### Example:
+```bash
+GET /manage/builder/integrations
+```
+ ---
+
+
+## GET /manage/builder/integration/plugins
+
+**Description:** Fetch plugins associated with all integration builders.
+
+
+**Returns:** transformedData
+
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| transformedData | **array** - A list of plugins associated with integration builders. |
+
+### Example:
+```bash
+GET /manage/builder/integration/plugins
+```
+ ---
+
+
+## POST /manage/search
+
+**Description:** Search through hosts and endpoints based on a search term.
+
+
+**Returns:** results
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| searchTerm | string |  | The search term to query hosts and endpoints. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| results | **array** - List of matching hosts and endpoints. |
+
+### Example:
+```bash
+POST /manage/search{  "searchTerm": "example"}
+```
+ ---
 
