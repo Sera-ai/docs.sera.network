@@ -1,0 +1,51 @@
+# API Documentation
+
+{{#each this}}
+
+{{#if returns.[0]}}
+## {{name}}
+
+{{#if description}}
+**Description:** {{{description}}}
+{{/if}}
+
+{{/if}}
+
+{{#if returns.[0]}}
+**Returns:** {{{returns.[0].type.names.[0]}}}
+{{/if}}
+
+{{#if params}}
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+{{#each params}}
+| {{{name}}} | {{{type.names.[0]}}} | {{{defaultvalue}}} | {{{description}}} |
+{{/each}}
+{{/if}}
+
+
+{{#if returns}}
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+{{#each returns}}
+| {{{type.names.[0]}}} | {{{description}}} |
+{{/each}}
+{{/if}}
+
+{{#if examples}}
+### Example:
+```bash
+{{{examples.[0]}}}
+```
+{{/if}}
+{{#if returns.[0]}}
+ ---
+{{/if}}
+
+{{/each}}
