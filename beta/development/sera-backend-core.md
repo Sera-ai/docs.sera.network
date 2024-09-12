@@ -261,6 +261,38 @@ GET /manage/builder?path=/api/test&method=GET
  ---
 
 
+## POST /manage/builder/create
+
+**Description:** Create a new builder event with nodes and edges based on the provided template and fields.
+
+
+**Returns:** dataToSave
+
+
+### Parameters:
+
+| Name | Type | Parameter Type | Description |
+|------|------|---------|-------------|
+| host_id | string | body | ID of the host for which the builder is being created. |
+| hostname | string | body | Hostname of the builder. |
+| path | string | body | Path for the builder. |
+| method | string | body | HTTP method for the builder. |
+
+
+
+### Return Parameters:
+
+| Name | **Type** - Description |
+|------|-------------|
+| dataToSave | **object** - The newly created builder event with nodes and edges. |
+
+### Example:
+```bash
+POST /manage/builder/create
+```
+ ---
+
+
 ## POST /manage/builder/update
 
 **Description:** Update an existing builder event.
